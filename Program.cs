@@ -1,50 +1,63 @@
-﻿// 1. Katta harf tekshiruvi
+﻿// 1. Aqqli robot
 
-Console.Write("Iltimos, bitta harf kiriting: ");
-char harfInput = Console.ReadLine()[0];
+Console.Write("Robotga buyruq bering: ");
+string buyruq = Console.ReadLine().Trim().ToLower();
 
-bool kattaHarfmi = char.IsUpper(harfInput);
-
-Console.WriteLine("Harf kattami? ");
-
-if (kattaHarfmi)
+string bajarish = buyruq switch
 {
-    Console.WriteLine("HA");
-}
-else if (!kattaHarfmi)
+    "sakra" => "Robot sakradi.",
+    "burul" => "Robot buruldi.",
+    "yur" => "Robot yurdi.",
+    "to'xta" => "Robot to'xtadi.",
+    _ => " < Noma'lum buyruq > "
+};
+
+Console.WriteLine(bajarish);
+Console.WriteLine();
+
+// 2. Sehrli do'kon
+
+Console.WriteLine("Do'konda bor mashulotlar: olma, anor, olcha, qovun, tarvuz, sabzi, pomidor, sut, non, uzum");
+Console.Write("Mahsulot nomini kiriting: ");
+string mahsulot = Console.ReadLine().Trim().ToLower();
+
+double narx = mahsulot switch
 {
-    Console.WriteLine("YO'Q");
+    "olma" => 5000,
+    "anor" => 9000,
+    "olcha" => 3000,
+    "qovun" => 20000,
+    "tarvuz" => 15000,
+    "sabzi" => 4000,
+    "pomidor" => 5000,
+    "sut" => 6000,
+    "non" => 3000,
+    "uzum" => 10000,
+    _ => 0
+};
+
+if (narx == 0)
+{
+    Console.WriteLine(" < Bunday mahsulot yo'q > ");
 }
 else
 {
-    Console.WriteLine("Boshqa belgi kiritdingiz!");
+    Console.WriteLine($"Mahsulot narxi: {narx} so'm");
 }
+Console.WriteLine();
 
-// 2. Ha/Yo'q tekshiruvi
+// 3. Trafik yoritgich
 
-Console.WriteLine("Dasturlash yoqadimi? (Ha/Yo'q)");
+Console.Write("Rang kiriting: ");
+string rang = Console.ReadLine().Trim().ToLower();
 
-string javob = Console.ReadLine();
-javob.ToLower();
+string harakat = (rang == "yashil")    
+    ? "Yuring!" 
+    : (rang == "sariq")
+        ? "Tayyrolaning!"
+        : (rang == "qizil")
+            ? "To'xtang!"
+            : " <Noma'lum rang> ";
 
-if (javob == "ha" || javob == "h")
-{
-    Console.WriteLine("Ajoyib!");
-}
-else if (javob == "yo'q" || javob == "y" || javob == "yoq")
-{
-    Console.WriteLine("Afsus!");
-}
-else
-{
-    Console.WriteLine("Javobingizni tushunmadim!");
-}
-
-// 3. Ismdagi birinchi harf
-
-Console.Write("Iltimos, ismingizni kiriting: ");
-string ism = Console.ReadLine().Trim();
-
-char birinchiHarf = ism[0];
-
-Console.WriteLine($"Ismingiz birinchi harfi: {birinchiHarf}");
+Console.WriteLine(harakat);
+Console.WriteLine();
